@@ -28,11 +28,17 @@
     nav {
       margin-top: 10px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 20px;
       overflow-x: auto;
       white-space: nowrap;
       padding: 8px 10px;
+    }
+
+    @media (min-width: 768px) {
+      nav {
+        justify-content: center;
+      }
     }
 
     nav a {
@@ -117,5 +123,6 @@
   </footer>
 </body>
 </html>
+
 
 
