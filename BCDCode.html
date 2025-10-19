@@ -82,6 +82,7 @@
       padding: 20px;
       flex: 1;
       overflow-y: auto;
+      padding-bottom: 100px
     }
 
     .heading {
@@ -159,11 +160,14 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+      left: 0;
+      z-index: 5;
     }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.5rem;
+    @media (max-width: 600px) {
+      footer {
+        font-size: 0.9rem;
+        padding: 12px
       }
     }
   </style>
@@ -267,4 +271,5 @@
   </script>
 
 </body>
+
 </html>
