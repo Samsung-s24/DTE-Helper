@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTE Helper - Complements</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #1c1c1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #00ffcc;
+      position: relative;
+      z-index: 3;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      text-align: center;
+      flex: 1;
+    }
+
+    .openbtn {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: #00ffcc;
+      color: #111;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      z-index: 4;
+    }
+
+    .openbtn:hover {
+      background-color: #00cca3;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: calc(100% - 70px);
+      width: 0;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      background: #111;
+      overflow-x: hidden;
+      transition: width 0.4s ease;
+      padding-top: 20px;
+      border-right: 2px solid #00ffcc;
+      z-index: 2;
+    }
+
+    .sidebar a {
+      padding: 10px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffffff;
+      display: block;
+      transition: color 0.3s;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    .sidebar a:hover {
+      color: #00ffcc;
+    }
+
+    #main {
+      transition: margin-left 0.4s ease;
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1c1c1c;
+      border-top: 2px solid #00ffcc;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .heading {
+      text-align: center;
+      padding: 25px;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      border-bottom: 1px solid #00ffcc;
+    }
+
+    /* Boxes */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 40px;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 20px #00ffcc;
+      border: 1px solid #00ffcc;
+      text-align: center;
+      flex: 1;
+      min-width: 320px;
+      max-width: 450px;
+    }
+
+    .box h2 {
+      color: #00ffcc;
+      margin-bottom: 15px;
+    }
+
+    select, input {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      min-width: 120px;
+      margin: 8px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #00ffcc;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cca3;
+    }
+
+    .output {
+      margin-top: 15px;
+      padding: 12px;
+      border: 2px solid #00ffcc;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      color: #000;
+      background: #fff;
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="openbtn" onclick="toggleNav()">☰</button>
+    <h1>Chapter-1</h1>
+  </header>
+
+  <div id="mySidebar" class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="NumberSystem.html">Number System</a>
+    <a href="BinaryArithmetic.html">Binary Arithmetic</a>
+    <a href="Complements.html">Complements</a>
+    <a href="BCDCode.html">BCD Code</a>
+    <a href="GrayCode.html">Gray Code</a>
+    <a href="Excess-3.html">Excess-3</a>
+  </div>
+
+  <div id="main">
+    <div class="heading">Complements</div>
+
+    <div class="container">
+      <!-- Converter -->
+      <div class="box">
+        <h2>Converter</h2>
+        <div>
+          <select id="convFrom">
+            <option value="bin">Binary</option>
+            <option value="dec">Decimal</option>
+          </select>
+          <span>TO</span>
+          <select id="convType">
+            <option value="1s">1's Complement</option>
+            <option value="2s">2's Complement</option>
+          </select>
+        </div>
+        <input type="text" id="convInput" placeholder="Enter number">
+        <button onclick="convert()">Convert</button>
+        <div class="output" id="convResult">Result will appear here</div>
+      </div>
+
+      <!-- Operation -->
+      <div class="box">
+        <h2>Operation</h2>
+        <div>
+          <select id="opBase">
+            <option value="bin">Binary</option>
+            <option value="dec">Decimal</option>
+          </select>
+          <select id="opComp">
+            <option value="1s">1's Complement</option>
+            <option value="2s">2's Complement</option>
+          </select>
+          <select id="opType">
+            <option value="add">Addition</option>
+            <option value="sub">Subtraction</option>
+          </select>
+        </div>
+        <input type="text" id="opNum1" placeholder="Enter number 1">
+        <input type="text" id="opNum2" placeholder="Enter number 2">
+        <button onclick="operation()">Calculate</button>
+        <div class="output" id="opResult">Result will appear here</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 DTE Helper | Complements Page</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+
+    // 1's Complement
+    function onesComplement(bin) {
+      return bin.split("").map(b => b === "0" ? "1" : "0").join("");
+    }
+
+    // 2's Complement
+    function twosComplement(bin) {
+      let ones = onesComplement(bin);
+      let carry = 1, result = "";
+      for (let i = ones.length - 1; i >= 0; i--) {
+        let bit = parseInt(ones[i]) + carry;
+        result = (bit % 2) + result;
+        carry = bit > 1 ? 1 : 0;
+      }
+      if (carry) result = "1" + result;
+      return result;
+    }
+
+    function convert() {
+      let from = document.getElementById("convFrom").value;
+      let type = document.getElementById("convType").value;
+      let val = document.getElementById("convInput").value.trim();
+      let bin;
+
+      if (from === "dec") {
+        if (isNaN(val)) {
+          document.getElementById("convResult").innerText = "Enter valid decimal number";
+          return;
+        }
+        bin = parseInt(val).toString(2);
+      } else {
+        if (!/^[01]+$/.test(val)) {
+          document.getElementById("convResult").innerText = "Enter valid binary number";
+          return;
+        }
+        bin = val;
+      }
+
+      let res = (type === "1s") ? onesComplement(bin) : twosComplement(bin);
+      document.getElementById("convResult").innerText = res;
+    }
+
+    function operation() {
+      let base = document.getElementById("opBase").value;
+      let comp = document.getElementById("opComp").value;
+      let op = document.getElementById("opType").value;
+      let n1 = document.getElementById("opNum1").value.trim();
+      let n2 = document.getElementById("opNum2").value.trim();
+
+      if (base === "bin" && (!/^[01]+$/.test(n1) || !/^[01]+$/.test(n2))) {
+        document.getElementById("opResult").innerText = "Enter valid binary numbers";
+        return;
+      }
+      if (base === "dec" && (isNaN(n1) || isNaN(n2))) {
+        document.getElementById("opResult").innerText = "Enter valid decimal numbers";
+        return;
+      }
+
+      let a = (base === "dec") ? parseInt(n1) : parseInt(n1, 2);
+      let b = (base === "dec") ? parseInt(n2) : parseInt(n2, 2);
+      let result = (op === "add") ? a + b : a - b;
+
+      result = result.toString(2);
+      result = (comp === "1s") ? onesComplement(result) : twosComplement(result);
+      document.getElementById("opResult").innerText = result;
+    }
+  </script>
+</body>
+</html>

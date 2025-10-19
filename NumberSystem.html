@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTE Helper - Number System</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #1c1c1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #00ffcc;
+      position: relative;
+      z-index: 3;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      text-align: center;
+      flex: 1;
+    }
+
+    .openbtn {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: #00ffcc;
+      color: #111;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      z-index: 4;
+    }
+
+    .openbtn:hover {
+      background-color: #00cca3;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: calc(100% - 70px);
+      width: 0;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      background: #111;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 20px;
+      border-right: 2px solid #00ffcc;
+      z-index: 2;
+    }
+
+    .sidebar a {
+      padding: 10px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffffff;
+      display: block;
+      transition: 0.3s;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    .sidebar a:hover {
+      color: #00ffcc;
+    }
+
+    #main {
+      transition: margin-left 0.4s;
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    /* Page Heading */
+    .heading {
+      text-align: center;
+      padding: 25px;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      border-bottom: 1px solid #00ffcc;
+    }
+
+    /* Converter Box */
+    .converter {
+      background: rgba(0,0,0,0.7);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #00ffcc;
+      box-shadow: 0px 0px 20px #00ffcc;
+      width: 90%;
+      max-width: 720px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .converter h2 {
+      margin-bottom: 20px;
+      color: #00ffcc;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    select, input {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background: #fff;
+      color: #000;
+      min-width: 120px;
+      outline: none;
+    }
+
+    .output {
+      margin-top: 20px;
+      padding: 12px;
+      border: 2px solid #00ffcc;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      color: #000;
+      background: #fff;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1c1c1c;
+      border-top: 2px solid #00ffcc;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <button class="openbtn" onclick="toggleNav()">☰</button>
+    <h1>Chapter - 1</h1>
+  </header>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="NumberSystem.html">Number System</a>
+    <a href="BinaryArithmetic.html">Binary Arithmetic</a>
+    <a href="Complements.html">Complements</a>
+    <a href="BCDCode.html">BCD Code</a>
+    <a href="GrayCode.html">Gray Code</a>
+    <a href="Excess-3.html">Excess-3</a>
+  </div>
+
+  <!-- Main Section -->
+  <div id="main">
+    <div class="heading">Number System Converter</div>
+
+    <div class="converter">
+      <h2>Convert Between Binary, Octal, Decimal & Hexadecimal</h2>
+      <div class="row">
+        <select id="fromSystem">
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="10" selected>Decimal</option>
+          <option value="16">Hexadecimal</option>
+        </select>
+
+        <input type="text" id="inputNumber" placeholder="Enter number" />
+
+        <span>→</span>
+
+        <select id="toSystem">
+          <option value="2">Binary</option>
+          <option value="8">Octal</option>
+          <option value="10" selected>Decimal</option>
+          <option value="16">Hexadecimal</option>
+        </select>
+      </div>
+
+      <div class="output" id="outputResult">Result will appear here</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 DTE Helper | Chapter 1
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Sidebar toggle
+    function toggleNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+
+    // Conversion logic (live update)
+    document.getElementById('inputNumber').addEventListener('input', convertNumber);
+    document.getElementById('fromSystem').addEventListener('change', convertNumber);
+    document.getElementById('toSystem').addEventListener('change', convertNumber);
+
+    function convertNumber() {
+      let fromBase = parseInt(document.getElementById('fromSystem').value);
+      let toBase = parseInt(document.getElementById('toSystem').value);
+      let num = document.getElementById('inputNumber').value.trim();
+
+      if (num === '') {
+        document.getElementById('outputResult').innerText = 'Please enter a number!';
+        return;
+      }
+
+      try {
+        let decimalValue = parseInt(num, fromBase);
+
+        if (isNaN(decimalValue)) {
+          document.getElementById('outputResult').innerText = 'Invalid number for selected system!';
+          return;
+        }
+
+        let result = decimalValue.toString(toBase).toUpperCase();
+        document.getElementById('outputResult').innerText = result;
+      } catch (error) {
+        document.getElementById('outputResult').innerText = 'Error: Invalid Input!';
+      }
+    }
+  </script>
+
+</body>
+</html>

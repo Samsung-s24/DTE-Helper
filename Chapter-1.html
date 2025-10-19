@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTE Helper - Chapter 1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #1c1c1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #00ffcc;
+      position: relative;
+      z-index: 3;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      text-align: center;
+      flex: 1;
+    }
+
+    .openbtn {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: #00ffcc;
+      color: #111;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      z-index: 4;
+    }
+
+    .openbtn:hover {
+      background-color: #00cca3;
+    }
+
+    /* Sidebar below header */
+    .sidebar {
+      height: calc(100% - 70px);
+      width: 0;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      background: #111;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 20px;
+      border-right: 2px solid #00ffcc;
+      z-index: 2;
+    }
+
+    /* Sidebar links */
+    .sidebar a {
+      padding: 10px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffffff; /* white text */
+      display: block;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      color: #00ffcc;
+    }
+
+    #main {
+      transition: margin-left 0.4s;
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1c1c1c;
+      border-top: 2px solid #00ffcc;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="openbtn" onclick="toggleNav()">☰</button>
+    <h1>Chapter - 1</h1>
+  </header>
+
+  <div id="mySidebar" class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="NumberSystem.html">Number Converter</a>
+    <a href="BinaryArithmetic.html">Binary Arithmetic</a>
+    <a href="Complements.html">Complements</a>
+    <a href="BCDCode.html">BCD Code</a>
+    <a href="GrayCode.html">Gray Code</a>
+    <a href="Excess-3.html">Excess-3</a>
+  </div>
+
+  <section id="main" class="hero">
+    <h2>Welcome to DTE Helper</h2>
+    <p>
+      Perform Number System, Binary Arithmetic, Complements, BCD, Gray Code, and Excess-3 easily.
+      Perfect for diploma and college students!
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 DTE Helper | Chapter 1</p>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+  </script>
+
+</body>
+</html>
