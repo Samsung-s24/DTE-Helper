@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTE Helper - Logic Gates</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #1c1c1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #00ffcc;
+      position: relative;
+      z-index: 3;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      text-align: center;
+      flex: 1;
+    }
+
+    .openbtn {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: #00ffcc;
+      color: #111;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      z-index: 4;
+    }
+
+    .openbtn:hover {
+      background-color: #00cca3;
+    }
+
+    .sidebar {
+      height: calc(100% - 70px);
+      width: 0;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      background: #111;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 20px;
+      border-right: 2px solid #00ffcc;
+      z-index: 2;
+    }
+
+    .sidebar a {
+      padding: 10px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffffff;
+      display: block;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      color: #00ffcc;
+    }
+
+    #main {
+      transition: margin-left 0.4s;
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 80px;
+    }
+
+    .heading {
+      text-align: center;
+      padding: 25px;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      border-bottom: 1px solid #00ffcc;
+    }
+
+    .container {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    .box {
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #00ffcc;
+      box-shadow: 0px 0px 20px #00ffcc;
+      margin-bottom: 25px;
+    }
+
+    .box h2 {
+      color: #00ffcc;
+      border-bottom: 1px dashed #00ffcc;
+      padding-bottom: 5px;
+    }
+
+    .gate-section h3 {
+      color: #ff0077;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #fff;
+      color: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+    }
+
+    th, td {
+      border: 1px solid #00ffcc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background: #00ffcc;
+      color: #000;
+    }
+
+    .symbol {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    svg {
+      width: 120px;
+      height: 60px;
+      background: #fff;
+      border: 2px solid #00ffcc;
+      border-radius: 8px;
+      padding: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1c1c1c;
+      border-top: 2px solid #00ffcc;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      svg { width: 100px; height: 50px; }
+      th, td { font-size: 14px; padding: 6px; }
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="openbtn" onclick="toggleNav()">☰</button>
+  <h1>Chapter-2</h1>
+</header>
+
+<div id="mySidebar" class="sidebar">
+  <a href="index.html">Home</a>
+  <a href="LogicGates.html">Logic Gates</a>
+  <a href="Realization.html">Realization</a>
+  <a href="BooleanAlgebra.html">Boolean Algebra</a>
+  <a href="Operation.html">Operation</a>
+  <a href="LogicFamilies.html">Logic Families</a>
+</div>
+
+<div id="main">
+  <div class="heading">Logic Gates & Boolean Algebra</div>
+
+  <div class="container">
+    <div class="box">
+      <h2>Logic Gates & Truth Table Fundamentals</h2>
+      <p><strong>Logic Gates:</strong> Circuits that perform logical operations on binary inputs to produce an output.</p>
+      <p><strong>Truth Table:</strong> Shows all possible combinations of inputs and corresponding outputs.</p>
+      <p><strong>Representation:</strong> HIGH (1) = +5V, LOW (0) = 0V.</p>
+    </div>
+
+    <div class="box gate-section">
+      <h2>1. Basic Gates</h2>
+
+      <h3>A) AND Gate (IC 7408)</h3>
+      <div class="symbol">
+<svg viewBox="0 0 120 60">
+  <!-- Inputs -->
+  <line x1="0" y1="20" x2="10" y2="20" stroke="black" stroke-width="2"/>
+  <line x1="0" y1="40" x2="10" y2="40" stroke="black" stroke-width="2"/>
+  
+  <!-- Gate body -->
+  <path d="M10 10 H50 A15 15 0 0 1 50 50 H10 Z" fill="none" stroke="black" stroke-width="2"/>
+  
+  <!-- Output -->
+  <line x1="65" y1="30" x2="120" y2="30" stroke="black" stroke-width="2"/>
+</svg>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH only when all inputs are HIGH.</p>
+      <p><strong>Boolean Expression:</strong> Y = A · B</p>
+      <table>
+        <tr><th>A</th><th>B</th><th>Y</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </table>
+
+      <h3>B) OR Gate (IC 7432)</h3>
+      <div class="symbol">
+        <svg viewBox="0 0 100 50">
+          <!-- Inputs -->
+          <line x1="0" y1="20" x2="20" y2="20" stroke="black" stroke-width="2"/>
+          <line x1="0" y1="30" x2="20" y2="30" stroke="black" stroke-width="2"/>
+          
+          <!-- Gate body -->
+          <path d="M10 10 Q40 25 10 40" fill="none" stroke="black" stroke-width="2"/>
+          <path d="M10 10 Q60 10 90 25 Q60 40 10 40" fill="none" stroke="black" stroke-width="2"/>
+          
+           <!-- Output -->
+          <line x1="90" y1="25" x2="120" y2="25" stroke="black" stroke-width="2"/>
+        </svg>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH when any input is HIGH.</p>
+      <p><strong>Boolean Expression:</strong> Y = A + B</p>
+      <table>
+        <tr><th>A</th><th>B</th><th>Y</th></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </table>
+
+      <h3>C) NOT Gate (IC 7404)</h3>
+      <div class="symbol">
+        <svg viewBox="0 0 100 50">
+            <!-- Inputs -->
+            <line x1="0" y1="20" x2="10" y2="20" stroke="black" stroke-width="2"/>
+            <line x1="0" y1="30" x2="10" y2="30" stroke="black" stroke-width="2"/>
+          
+            <!-- Gate body -->
+            <polygon points="10,10 10,40 50,25" fill="none" stroke="black" stroke-width="2"/>
+          
+            <!-- Output bubble -->
+            <circle cx="55" cy="25" r="4" fill="none" stroke="black" stroke-width="2"/>
+
+            <!-- Output -->
+            <line x1="60" y1="25" x2="120" y2="25" stroke="black" stroke-width="2"/>
+        </svg>
+      </div>
+      <p><strong>Description:</strong> Output is inverse of input.</p>
+      <p><strong>Boolean Expression:</strong> Y = <span style="text-decoration: overline;">A</span></p>
+      <table>
+        <tr><th>A</th><th>Y</th></tr>
+        <tr><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td></tr>
+      </table>
+    </div>
+
+    <div class="box gate-section">
+      <h2>2. Universal Gates</h2>
+
+      <h3>A) NAND Gate (IC 7400)</h3>
+      <div class="symbol">
+<svg viewBox="0 0 130 60">
+  <!-- Inputs -->
+  <line x1="0" y1="20" x2="10" y2="20" stroke="black" stroke-width="2"/>
+  <line x1="0" y1="40" x2="10" y2="40" stroke="black" stroke-width="2"/>
+  
+  <!-- Gate body -->
+  <path d="M10 10 H50 A15 15 0 0 1 50 50 H10 Z" fill="none" stroke="black" stroke-width="2"/>
+  
+  <!-- Output bubble -->
+  <circle cx="75" cy="30" r="4" fill="white" stroke="black" stroke-width="2"/>
+  
+  <!-- Output line -->
+  <line x1="69" y1="30" x2="130" y2="30" stroke="black" stroke-width="2"/>
+</svg>
+        <table>
+            <tr><th>A</th><th>B</th><th>Y</th></tr>
+            <tr><td>0</td><td>0</td><td>1</td></tr>
+            <tr><td>0</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH except when all inputs are HIGH.</p>
+      <p><strong>Boolean Expression:</strong> Y = <span style="text-decoration: overline;">A · B</span></p>
+
+      <h3>B) NOR Gate (IC 7402)</h3>
+      <div class="symbol">
+        <svg viewBox="0 0 100 50">
+          <line x1="0" y1="20" x2="20" y2="20" stroke="black" stroke-width="2"/>
+          <line x1="0" y1="30" x2="20" y2="30" stroke="black" stroke-width="2"/>
+          
+          <!-- Gate body -->
+          <path d="M10 10 Q40 25 10 40" fill="none" stroke="black" stroke-width="2"/>
+          <path d="M10 10 Q60 10 90 25 Q60 40 10 40" fill="none" stroke="black" stroke-width="2"/>
+          
+           <!-- Output -->
+          <line x1="90" y1="25" x2="120" y2="25" stroke="black" stroke-width="2"/>
+          
+          <!-- Output bubble -->
+          <circle cx="90" cy="25" r="4" fill="none" stroke="black" stroke-width="2"/>
+        </svg>
+        <table>
+            <tr><th>A</th><th>B</th><th>Y</th></tr>
+            <tr><td>0</td><td>0</td><td>1</td></tr>
+            <tr><td>0</td><td>1</td><td>0</td></tr>
+            <tr><td>1</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH only when all inputs are LOW.</p>
+      <p><strong>Boolean Expression:</strong> Y = <span style="text-decoration: overline;">A + B</span></p>
+    </div>
+
+    <div class="box gate-section">
+      <h2>3. Exclusive Gates</h2>
+
+      <h3>A) EX-OR Gate (IC 7486)</h3>
+      <div class="symbol">
+<svg viewBox="0 0 140 60">
+  <!-- Input lines -->
+  <line x1="0" y1="20" x2="20" y2="20" stroke="black" stroke-width="2"/>
+  <line x1="0" y1="30" x2="20" y2="30" stroke="black" stroke-width="2"/>
+
+  <!-- Back double curves (for input side) -->
+  <path d="M10 10 Q30 25 10 40" fill="none" stroke="black" stroke-width="2"/>
+  <path d="M20 10 Q50 25 20 40" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Main gate body -->
+  <path d="M20 10 Q70 10 100 25 Q70 40 20 40" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Output line -->
+  <line x1="104" y1="25" x2="135" y2="25" stroke="black" stroke-width="2"/>
+</svg>
+        <table>
+            <tr><th>A</th><th>B</th><th>Y</th></tr>
+            <tr><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>0</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>1</td><td>1</td><td>0</td></tr>
+        </table>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH when inputs are different.</p>
+      <p><strong>Boolean Expression:</strong> Y = A ⊕ B = <span style="text-decoration: overline;">A</span>B + A<span style="text-decoration: overline;">B</span></p>
+
+      <h3>B) EX-NOR Gate (IC 74266)</h3>
+      <div class="symbol">
+<svg viewBox="0 0 140 60">
+  <!-- Input lines -->
+  <line x1="0" y1="20" x2="20" y2="20" stroke="black" stroke-width="2"/>
+  <line x1="0" y1="30" x2="20" y2="30" stroke="black" stroke-width="2"/>
+  
+  <!-- Back double curves (for input side) -->
+  <path d="M10 10 Q30 25 10 40" fill="none" stroke="black" stroke-width="2"/>
+  <path d="M20 10 Q50 25 20 40" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Main gate body -->
+  <path d="M20 10 Q70 10 100 25 Q70 40 20 40" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Output bubble -->
+  <circle cx="100" cy="25" r="4" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Output line -->
+  <line x1="104" y1="25" x2="135" y2="25" stroke="black" stroke-width="2"/>
+</svg>
+        <table>
+            <tr><th>A</th><th>B</th><th>Y</th></tr>
+            <tr><td>0</td><td>0</td><td>1</td></tr>
+            <tr><td>0</td><td>1</td><td>0</td></tr>
+            <tr><td>1</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>1</td><td>1</td></tr>
+        </table>
+      </div>
+      <p><strong>Description:</strong> Output is HIGH when inputs are same.</p>
+      <p><strong>Boolean Expression:</strong> Y = A ⊙ B = AB + <span style="text-decoration: overline;">A</span><span style="text-decoration: overline;">B</span></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 DTE Helper | Logic Gates Page
+</footer>
+
+<script>
+  function toggleNav() {
+    const sidebar = document.getElementById("mySidebar");
+    const main = document.getElementById("main");
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+      main.style.marginLeft = "0";
+    } else {
+      sidebar.style.width = "250px";
+      main.style.marginLeft = "250px";
+    }
+  }
+</script>
+</body>
+</html>
